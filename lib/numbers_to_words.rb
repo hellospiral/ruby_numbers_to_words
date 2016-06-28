@@ -20,16 +20,45 @@ class Fixnum
         last_two_digits = num_string[1] + num_string[2]
         answer = "one hundred " + teens.fetch(last_two_digits)
         # hundreds 1 hundred + teens 112
-
-      elsif num_string[1] == '0'
-        answer = ones.fetch(num_string[0]) + " hundred "  + tens.fetch(num_string[1]) + "" + ones.fetch(num_string[2])
-        # hundreds with second number 0  205
+      elsif num_string[1] == '0' && num_string[2] != '0'
+        answer = ones.fetch(num_string[0]) + " hundred "  + tens.fetch(num_string[1]) + "irb" + ones.fetch(num_string[2])
+        # hundreds with second number 0  105
       elsif num_string[1] == '1'
         last_two_digits = num_string[1] + num_string[2]
         answer = ones.fetch(num_string[0]) + " hundred "  + teens.fetch(last_two_digits)
+      elsif num_string[1] == '0' && num_string[2] == '0'
+        answer = ones.fetch(num_string[0]) + " hundred"
       else
         answer = ones.fetch(num_string[0]) + " hundred "  + tens.fetch(num_string[1]) + " " + ones.fetch(num_string[2])
+      end
 
+
+    elsif num_string.length == 4
+      if num_string[1] == '0' && num_string[2] == '0' && num_string[3] == '0'
+        answer = ones.fetch(num_string[0]) + " thousand"
+        # working for number with 000 ex:1000
+      elsif num_string[2] == '0' && num_string[3] == '0'
+        answer = ones.fetch(num_string[0]) + " thousand " + ones.fetch(num_string[1]) + " hundred"
+        # working for number with nn00 ex:1100
+      elsif num_string[1] == '0' && num_string[2] == '0'
+        answer = ones.fetch(num_string[0]) + " thousand " + ones.fetch(num_string[3])
+        # working for number with n00n ex:1005
+      elsif num_string[1] == '0' && num_string[2] != '1' && num_string[3] == '0'
+        answer = ones.fetch(num_string[0]) + " thousand " + tens.fetch(num_string[2])
+        # working for number with n0not(1)0 ex:1020
+      elsif num_string[1] == '0' && num_string[2] == '1'
+        last_two_digits = num_string[2] + num_string[3]
+        answer = ones.fetch(num_string[0]) + " thousand " + teens.fetch(last_two_digits)
+        # working for number with n01n ex:1015
+      elsif num_string[2] == '1'
+        last_two_digits = num_string[2] + num_string[3]
+        answer = ones.fetch(num_string[0]) + " thousand " + ones.fetch(num_string[1]) + " hundred "  + teens.fetch(last_two_digits)
+      elsif num_string[2] != '1' && num_string[3] == '0'
+        last_two_digits = num_string[2] + num_string[3]
+        answer = ones.fetch(num_string[0]) + " thousand " + ones.fetch(num_string[1]) + " hundred "  + tens.fetch(num_string[2])
+
+      else
+        answer = ones.fetch(num_string[0]) + " thousand "  + ones.fetch(num_string[1]) + " hundred " + tens.fetch(num_string[2]) + " " + ones.fetch(num_string[3])
       end
     end
   end

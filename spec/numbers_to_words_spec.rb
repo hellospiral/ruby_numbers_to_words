@@ -12,7 +12,10 @@ describe("Fixnum#to_word") do
     expect(99.to_word()).to(eq("ninety nine"))
   end
   it("returns the right string for a teen number") do
-    expect(11.to_word()).to(eq("eleven"))
+    expect(101.to_word()).to(eq("one hundred one"))
+  end
+  it("returns the right string for a teen number ending in ten") do
+    expect(110.to_word()).to(eq("one hundred ten"))
   end
   it("returns the right string for a hundreds number") do
     expect(135.to_word()).to(eq("one hundred thirty five"))
@@ -22,5 +25,14 @@ describe("Fixnum#to_word") do
   end
   it("returns the right string for a hundreds number") do
     expect(412.to_word()).to(eq("four hundred twelve"))
+  end
+  it("returns the right string for a thousands number") do
+    expect(1000.to_word()).to(eq("one thousand"))
+  end
+  it("returns the right string for a thousands number") do
+    expect(1120.to_word()).to(eq("one thousand one hundred twenty"))
+  end
+  it("returns the right string for a thousands number") do
+    expect(7931.to_word()).to(eq("seven thousand nine hundred thirty one"))
   end
 end
