@@ -15,13 +15,13 @@ class Fixnum
         answer = tens.fetch(num_string[0]) + " " + ones.fetch(num_string[1])
         answer
       end
-    elsif num_string.length == 3
+    elsif num_string.length == 3 # hundreds
       if num_string[0] == '1' && num_string[1] == '1'
         last_two_digits = num_string[1] + num_string[2]
         answer = "one hundred " + teens.fetch(last_two_digits)
         # hundreds 1 hundred + teens 112
       elsif num_string[1] == '0' && num_string[2] != '0'
-        answer = ones.fetch(num_string[0]) + " hundred "  + tens.fetch(num_string[1]) + "irb" + ones.fetch(num_string[2])
+        answer = ones.fetch(num_string[0]) + " hundred "  + tens.fetch(num_string[1]) + "" + ones.fetch(num_string[2])
         # hundreds with second number 0  105
       elsif num_string[1] == '1'
         last_two_digits = num_string[1] + num_string[2]
@@ -33,7 +33,7 @@ class Fixnum
       end
 
 
-    elsif num_string.length == 4
+    elsif num_string.length == 4 # thousands
       if num_string[1] == '0' && num_string[2] == '0' && num_string[3] == '0'
         answer = ones.fetch(num_string[0]) + " thousand"
         # working for number with 000 ex:1000
@@ -56,9 +56,23 @@ class Fixnum
       elsif num_string[2] != '1' && num_string[3] == '0'
         last_two_digits = num_string[2] + num_string[3]
         answer = ones.fetch(num_string[0]) + " thousand " + ones.fetch(num_string[1]) + " hundred "  + tens.fetch(num_string[2])
-
       else
         answer = ones.fetch(num_string[0]) + " thousand "  + ones.fetch(num_string[1]) + " hundred " + tens.fetch(num_string[2]) + " " + ones.fetch(num_string[3])
+      end
+    elsif num_string.length == 5
+      ten_thousands_digit = ""
+      hundreds_digit = ""
+      if num_string[0] != '1' && num_string[2] != "0" && num_string[3] == "0" && num_string[4] == "0"
+        #search_digit_one = num_string[0]  num_string[1]
+        ten_thousands_digit_one = tens.fetch(num_string[0]) + " "
+        ten_thousands_digit_two = ones.fetch(num_string[1])
+        ten_thousands_digit = ten_thousands_digit_one + ten_thousands_digit_two + " thousand "
+        hundreds_digit = ones.fetch(num_string[2]) + " hundred"
+        answer = ten_thousands_digit + hundreds_digit
+      elsif num_string[2] == "0" && num_string[3] == "0" && num_string[4] == "0"
+        ten_thousands_digit_one = tens.fetch(num_string[0]) + " "
+        ten_thousands_digit_two = ones.fetch(num_string[1])
+        ten_thousands_digit = ten_thousands_digit_one + ten_thousands_digit_two + " thousand"
       end
     end
   end

@@ -35,4 +35,10 @@ describe("Fixnum#to_word") do
   it("returns the right string for a thousands number") do
     expect(7931.to_word()).to(eq("seven thousand nine hundred thirty one"))
   end
+  it("handles the number 25500") do
+    expect(25500.to_word()).to(eq("twenty five thousand five hundred"))
+  end
+  it("handles 99000") do
+    expect(99000.to_word()).to(eq("ninety nine thousand"))
+  end
 end
